@@ -132,28 +132,28 @@ int main(void){
     }
     else if(pid > 0){
         sleep(7);
-        printf("We are now in Process %d and We will now print the Process Tree(i.e. pstree) Starting from its Parent \n", (int)(getpid()));
+        printf("We are now in Process %d(i.e. the main process) and We will now print the Process Tree(i.e. pstree) Starting from its Parent \n", (int)(getpid()));
         sprintf(cmd,"pstree -np -C age %d",(int)(getppid()));
         res = system(cmd);
 
-        printf("We are now in Process %d and We will now print the Process Tree(i.e. pstree) Starting from Itself \n", (int)(getpid()));
+        printf("We are now in Process %d(i.e. the main process) and We will now print the Process Tree(i.e. pstree) Starting from Itself \n", (int)(getpid()));
         sprintf(cmd,"pstree -np -C age %d",(int)(getpid()));
         res = system(cmd);
 
-        printf("We are now in Process %d and We will now print the Process Tree(i.e. pstree) Starting from its Child \n",(int)(getpid()));
+        printf("We are now in Process %d(i.e. the main process) and We will now print the Process Tree(i.e. pstree) Starting from its Child \n",(int)(getpid()));
         sprintf(cmd,"pstree -np -C age %d",(int)(pid));
         res = system(cmd);
         sleep(35);
 
-        printf("We are now in Process %d and We will now print the Process Tree(i.e. pstree) Starting from its Parent \n", (int)(getpid()));
+        printf("We are now in Process %d(i.e. the main process) and We will now print the Process Tree(i.e. pstree) Starting from its Parent \n", (int)(getpid()));
         sprintf(cmd,"pstree -np -C age %d",(int)(getppid()));
         res = system(cmd);
 
-        printf("We are now in Process %d and We will now print the Process Tree(i.e. pstree) Starting from Itself \n", (int)(getpid()));
+        printf("We are now in Process %d(i.e. the main process) and We will now print the Process Tree(i.e. pstree) Starting from Itself \n", (int)(getpid()));
         sprintf(cmd,"pstree -np -C age %d",(int)(getpid()));
         res = system(cmd);
 
-        printf("We are now in Process %d and We will now print the Process Tree(i.e. pstree) Starting from its Child \n",(int)(getpid()));
+        printf("We are now in Process %d(i.e. the main process) and We will now print the Process Tree(i.e. pstree) Starting from its Child \n",(int)(getpid()));
         sprintf(cmd,"pstree -np -C age %d",(int)(pid));
         res = system(cmd);
 
