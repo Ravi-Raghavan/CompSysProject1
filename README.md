@@ -57,4 +57,4 @@ So, when you run the program, you do not need to actually generate the numbers.t
 How to execute this program: 
 No Arguments Needed. Simply execute as normal!
 
-Some additional information is that I generated process trees(via pstree) in the main process just to analyze how the process trees were working so that I could answer the accompanying questions for this Problem. Feel free to comment them out if it is making the output terminal cluttered 
+Some additional information is that I generated process trees(via pstree) in the main process just to analyze how the process trees were working so that I could answer the accompanying questions for this Problem. I have commented this out just to ensure that the output display isn't too cluttered and the grader can see the Process Tree in Scheme 1 quite clearly. Feel free to uncomment them if the grader wants to see the process tree as depicted by pstree 
