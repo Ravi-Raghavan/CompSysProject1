@@ -12,15 +12,17 @@ int H;
 int MAX_PROCESSES;
 int IDENTIFY_HIDDEN;
 int * ARRAY;
+FILE * outputFilePtr;
+
 
 void displayArray(int * array, size_t n)
 {
-    printf("The Array is as follows: ");
+    fprintf(outputFilePtr, "The Array is as follows: ");
     for(int i = 0; i < n; i ++){
-        printf("%d ", array[i]);
+        fprintf(outputFilePtr, "%d ", array[i]);
     }
 
-    printf("\n");
+    fprintf(outputFilePtr, "\n");
 };
 
 void shuffleArray(int *inputArray, size_t arraySize)
@@ -44,7 +46,7 @@ void populateArray()
     FILE *fptr = fopen(filename, "r");
 
     if(fptr == NULL){
-        printf("Error\n");
+        fprintf(outputFilePtr, "Error in creating/opening numbers.txt\n");
         exit(1);
     }
 
@@ -92,7 +94,7 @@ void generateTestFile(){
     fptr = fopen("numbers.txt", "w");
 
     if(fptr == NULL){
-        printf("Error\n");
+        fprintf(outputFilePtr, "Error in creating/opening numbers.txt \n");
         exit(1);
     }
 
@@ -121,8 +123,8 @@ void makeCalculations(int * ARRAY){
         if(value > MAXIMUM){MAXIMUM = value;}
 
     }
-    printf("MAXIMUM: %d\n", MAXIMUM);
-    printf("AVERAGE: %f\n", AVERAGE);
+    fprintf(outputFilePtr, "MAXIMUM: %d\n", MAXIMUM);
+    fprintf(outputFilePtr, "AVERAGE: %f\n", AVERAGE);
 }
 
 void identifyHidden(int * ARRAY){
@@ -130,7 +132,7 @@ void identifyHidden(int * ARRAY){
     for(int i = 0; i < (L + H); i ++){
         int value = *(ARRAY + i);
         if(value == -1 && hiddenIdentified < IDENTIFY_HIDDEN){
-            printf("Hidden Key Identified at Index %d\n", i);
+            fprintf(outputFilePtr, "Hidden Key Identified at Index %d\n", i);
             hiddenIdentified ++;
         }
     }
@@ -138,6 +140,10 @@ void identifyHidden(int * ARRAY){
 
 
 int main(int argc, char * argv[]){
+    outputFilePtr = fopen("output.txt", "w");
+    if(outputFilePtr == NULL){
+        perror("Error in creating the output file. Please be aware that your data may not be written to the file as you expected\n");
+    }
     double time_spent = 0.0;
     clock_t begin = clock();
 
@@ -158,5 +164,6 @@ int main(int argc, char * argv[]){
     // dividing the difference by CLOCKS_PER_SEC to convert to seconds
     time_spent += (double)(end - begin) / CLOCKS_PER_SEC;
         
-    printf("The elapsed time is %f seconds\n", time_spent);
+    fprintf(outputFilePtr, "The elapsed time is %f seconds\n", time_spent);
+    fclose(outputFilePtr);
 }
