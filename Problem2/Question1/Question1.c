@@ -132,6 +132,7 @@ int main(void){
     }
     else if(pid > 0){
         sleep(7);
+        /*
         printf("We are now in Process %d(i.e. the main process) and We will now print the Process Tree(i.e. pstree) Starting from its Parent \n", (int)(getpid()));
         sprintf(cmd,"pstree -np -C age %d",(int)(getppid()));
         res = system(cmd);
@@ -156,7 +157,8 @@ int main(void){
         printf("We are now in Process %d(i.e. the main process) and We will now print the Process Tree(i.e. pstree) Starting from its Child \n",(int)(getpid()));
         sprintf(cmd,"pstree -np -C age %d",(int)(pid));
         res = system(cmd);
-
+        */
+        
         waitpid(pid, &status, WUNTRACED | WCONTINUED);
         explain_wait_status(pid, status);
         //sleep(2);
