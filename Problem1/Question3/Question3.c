@@ -218,7 +218,9 @@ int find(int * array, int length, int target){
 
 
 arrayStatistics * executeTreeNodeHiddenIdentify(tree_node * node, int ** readPipe, int * writePipe, arrayStatistics * calculations){
+
     if(node -> numChildren == 0){
+        FILE * filePtr = fopen("output_Problem1_Question3.txt", "a");
         if(readPipe != NULL){
             for(int i = 0; i < X; i ++){
                     close(*(*(readPipe + i) + 1));
@@ -237,6 +239,7 @@ arrayStatistics * executeTreeNodeHiddenIdentify(tree_node * node, int ** readPip
                     *(calculations -> alreadyIdentified + hiddenIdentified) = i;
                     hiddenIdentified ++;
                     printf("Hi I am Process %d and I found the hidden key in Position A[%d]\n", node -> pid, i);
+                    fprintf(filePtr, "Hi I am Process %d and I found the hidden key in Position A[%d]\n", node -> pid, i);
                 }
                 else{
                     continue;
@@ -251,6 +254,7 @@ arrayStatistics * executeTreeNodeHiddenIdentify(tree_node * node, int ** readPip
             }
             close(*(writePipe + 0));
         }
+        fclose(filePtr);
         return calculations;
     }
     else{
@@ -309,6 +313,9 @@ arrayStatistics * executeTreeNodeHiddenIdentify(tree_node * node, int ** readPip
 }
 
 arrayStatistics * executeTreeNodeCalculations(tree_node * node, int ** readPipe, int * writePipe, arrayStatistics * calculations){
+    FILE * filePtr = fopen("output_Problem1_Question3.txt", "a");
+    fprintf(filePtr, "Hello I am Process %d and My Parent is Process %d \n", (int)(getpid()), (int)(getppid()));
+    fclose(filePtr);
     printf("Hello I am Process %d and My Parent is Process %d \n", (int)(getpid()), (int)(getppid()));
     if(node -> numChildren == 0){
         if(readPipe != NULL){
@@ -418,6 +425,11 @@ void executeProgramHeap(){
     generateHeap();
     setIndexHeap();
     calculations = executeTreeNodeCalculations(*(HEAP + 0), readPipe, writePipe, calculations);
+    FILE * filePtr = fopen("output_Problem1_Question3.txt", "a");
+    fprintf(filePtr, "MAXIMUM: %d\n", calculations -> max);
+    fprintf(filePtr, "AVERAGE: %f\n", (double)(calculations -> average));
+    fprintf(filePtr, "SUM: %d\n", calculations -> sum);
+    fclose(filePtr);
     printf("MAXIMUM: %d\n", calculations -> max);
     printf("AVERAGE: %f\n", (double)(calculations -> average));
     printf("SUM: %d\n", calculations -> sum);
@@ -460,6 +472,11 @@ void executeLeftTree(){
     generateXChildren(root, 1);
     setIndexTree(root, 0, L + H - 1);
     calculations = executeTreeNodeCalculations(root, readPipe, writePipe, calculations);
+    FILE * filePtr = fopen("output_Problem1_Question3.txt", "a");
+    fprintf(filePtr, "MAXIMUM: %d\n", calculations -> max);
+    fprintf(filePtr, "AVERAGE: %f\n", (double)(calculations -> average));
+    fprintf(filePtr, "SUM: %d\n", calculations -> sum);
+    fclose(filePtr);
     printf("MAXIMUM: %d\n", calculations -> max);
     printf("AVERAGE: %f\n", (double)(calculations -> average)); 
     printf("SUM: %d\n", calculations -> sum);
@@ -501,6 +518,11 @@ void executeRightTree(){
     generateXChildren(root, 0);
     setIndexTree(root, 0, L + H - 1);
     calculations = executeTreeNodeCalculations(root, readPipe, writePipe, calculations);
+    FILE * filePtr = fopen("output_Problem1_Question3.txt", "a");
+    fprintf(filePtr, "MAXIMUM: %d\n", calculations -> max);
+    fprintf(filePtr, "AVERAGE: %f\n", (double)(calculations -> average));
+    fprintf(filePtr, "SUM: %d\n", calculations -> sum);
+    fclose(filePtr);
     printf("MAXIMUM: %d\n", calculations -> max);
     printf("AVERAGE: %f\n", (double)(calculations -> average)); 
     printf("SUM: %d\n", calculations -> sum);
@@ -606,12 +628,17 @@ void verifyAnswers(){
         }
     }
     avg = ((double) sum) / ((double) count);
+    FILE * filePtr = fopen("output_Problem1_Question3.txt", "a");
     printf("MAXIMUM: %d\n", max);
     printf("AVERAGE: %f\n", avg);
+    fprintf(filePtr, "MAXIMUM: %d\n", max);
+    fprintf(filePtr, "AVERAGE: %f\n", avg);
     //printf("SUM: %d\n", sum);
+    fclose(filePtr);
 
 }
 int main(int argc, char * argv[]){
+    fclose(fopen("output_Problem1_Question3.txt", "w"));
     double time_spent = 0.0;
     clock_t begin = clock();
     L = atoi(argv[1]);
@@ -638,6 +665,9 @@ int main(int argc, char * argv[]){
     //executeRightTree();
 
     //printf("--------Verified Answers --------\n");
+    //FILE * filePtr = fopen("output_Problem1_Question3.txt", "a");
+    //fprintf(filePtr, "--------Verified Answers --------\n");
+    //fclose(filePtr);
     //verifyAnswers();
 
     clock_t end = clock();
