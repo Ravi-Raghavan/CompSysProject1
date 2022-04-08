@@ -57,7 +57,8 @@ void populateArray()
 
 
 void generateTestFile(){
-    
+    srand ( time(NULL) );
+    int MAX = (RAND_MAX) / L;
      FILE *fptr;
     
     int array[L + H];
@@ -85,7 +86,7 @@ void generateTestFile(){
             }
         }
         if(set == 1){continue;}
-        array[i] = rand() % 10000000;
+        array[i] = rand() % MAX;
     }
 
     fptr = fopen("numbers.txt", "w");
