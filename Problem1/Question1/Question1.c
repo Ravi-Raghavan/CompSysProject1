@@ -85,7 +85,7 @@ void generateTestFile(){
             }
         }
         if(set == 1){continue;}
-        array[i] = rand() % 20;
+        array[i] = rand() % 10000000;
     }
 
     fptr = fopen("numbers.txt", "w");
