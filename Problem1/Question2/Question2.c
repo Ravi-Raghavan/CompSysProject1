@@ -38,6 +38,7 @@ typedef struct arrayStatistics{
 } arrayStatistics;
 
 arrayStatistics * hiddenIdentify(tree_node *node, arrayStatistics * calculations){
+    FILE * filePtr = fopen("output_Problem1_Question2.txt", "a");
     int start = node -> START_INDEX;
     int end = node -> END_INDEX;
     double * hidden = malloc(sizeof(double) * H);
@@ -47,6 +48,7 @@ arrayStatistics * hiddenIdentify(tree_node *node, arrayStatistics * calculations
         if(ARRAY[i] == -1){
             if(hiddenIdentified < remainingHidden){
                 printf("Hidden Number has been Identified by Process %d at Location %d in the Array\n", (int)(getpid()), i);
+                fprintf(filePtr, "Hidden Number has been Identified by Process %d at Location %d in the Array\n", (int)(getpid()), i);
                 *(hidden + hiddenIdentified) = i;
                 hiddenIdentified ++;
             }
@@ -54,6 +56,7 @@ arrayStatistics * hiddenIdentify(tree_node *node, arrayStatistics * calculations
     }
     calculations -> hidden = hidden;
     calculations -> hiddenIdentified += hiddenIdentified;
+    fclose(filePtr);
     return calculations;
 }
 arrayStatistics * calculate(tree_node *node, arrayStatistics * calculations){
@@ -79,7 +82,11 @@ arrayStatistics * calculate(tree_node *node, arrayStatistics * calculations){
 
 void executeTreeNodeCalculate(tree_node * node , int readPipe[2], int writePipe[2], arrayStatistics * calculations){
     pid_t pid;
+    FILE * filePtr = fopen("output_Problem1_Question2.txt", "a");
     printf("Hi I am process %d and my parent is %d\n", (int)(getpid()), (int)(getppid()));
+    fprintf(filePtr, "Hi I am process %d and my parent is %d\n", (int)(getpid()), (int)(getppid()));
+    fclose(filePtr);
+
     if(node -> numProcesses >= MAX_PROCESSES){
         calculate(node, calculations);
         if(writePipe != NULL){
@@ -145,6 +152,9 @@ void executeTreeNodeCalculate(tree_node * node , int readPipe[2], int writePipe[
                 }
             }
             else{
+                FILE * filePtr = fopen("output_Problem1_Question2.txt", "a");
+                fprintf(filePtr, "Max=%d, Avg=%f\n", calculations -> max, calculations -> average);
+                fclose(filePtr);
                 printf("Max=%d, Avg=%f\n", calculations -> max, calculations -> average);
                 if(node->pid > 1){
                     exit(0);
@@ -320,13 +330,19 @@ void verifyAnswers(){
         }
     }
     avg = ((double) sum) / ((double) count);
+    FILE * filePtr = fopen("output_Problem1_Question2.txt", "a");
     printf("MAXIMUM: %d\n", max);
     printf("AVERAGE: %f\n", avg);
+    fprintf(filePtr, "MAXIMUM: %d\n", max);
+    fprintf(filePtr, "AVERAGE: %f\n", avg);
+    fclose(filePtr);
     //printf("SUM: %d\n", sum);
 
 }
 
 int main(int argc, char * argv[]){
+    fclose(fopen("output_Problem1_Question2.txt", "w"));
+
     double time_spent = 0.0;
  
     clock_t begin = clock();
