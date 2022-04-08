@@ -373,7 +373,9 @@ int main(int argc, char * argv[]){
     nodeB -> numProcesses = 1;
     
     executeTreeNodeHiddenIdentify(nodeB, newReadPipe, NULL, calculationsB);
-    verifyAnswers();
+
+    //printf("--------Verified Answers --------\n");
+    //verifyAnswers();
     
     printf("Program Complete! \n");
 
