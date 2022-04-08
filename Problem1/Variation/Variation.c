@@ -467,8 +467,8 @@ int main(int argc, char * argv[]){
     populateArray();
     
     //To execute the Heap Tree, run the following function
-    //printf("--------Program Output from Heap Execution --------\n");
-    //executeProgramHeap();
+    printf("--------Program Output from Heap Execution --------\n");
+    executeProgramHeap();
 
     //To execute the Left Sided Tree, run the following function 
     //printf("--------Program Output from Left Skewed Tree Execution --------\n");
@@ -478,8 +478,8 @@ int main(int argc, char * argv[]){
     //printf("--------Program Output from Right Skewed Tree Execution --------\n");
     //executeRightTree();
     
-    printf("--------Verified Answers --------\n");
-    verifyAnswers();
+    //printf("--------Verified Answers --------\n");
+    //verifyAnswers();
 
     clock_t end = clock();
  
