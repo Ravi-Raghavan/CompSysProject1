@@ -219,6 +219,7 @@ int find(int * array, int length, int target){
 
 arrayStatistics * executeTreeNodeHiddenIdentify(tree_node * node, int ** readPipe, int * writePipe, arrayStatistics * calculations){
     if(node -> numChildren == 0){
+        FILE * filePtr = fopen("variation.txt", "a");
         if(readPipe != NULL){
             for(int i = 0; i < X; i ++){
                     close(*(*(readPipe + i) + 1));
@@ -237,6 +238,7 @@ arrayStatistics * executeTreeNodeHiddenIdentify(tree_node * node, int ** readPip
                     *(calculations -> alreadyIdentified + hiddenIdentified) = i;
                     hiddenIdentified ++;
                     printf("Hi I am Process %d and I found the hidden key in Position A[%d]\n", node -> pid, i);
+                    fprintf(filePtr, "Hi I am Process %d and I found the hidden key in Position A[%d]\n", node -> pid, i);
                 }
                 else{
                     continue;
@@ -251,6 +253,7 @@ arrayStatistics * executeTreeNodeHiddenIdentify(tree_node * node, int ** readPip
             }
             close(*(writePipe + 0));
         }
+        fclose(filePtr);
         return calculations;
     }
     else{
@@ -454,6 +457,7 @@ void verifyAnswers(){
 
 }
 int main(int argc, char * argv[]){
+    fclose(fopen("variation.txt", "w"));
     double time_spent = 0.0;
     clock_t begin = clock();
     L = atoi(argv[1]);
