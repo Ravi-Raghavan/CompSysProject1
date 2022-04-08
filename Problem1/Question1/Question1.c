@@ -140,9 +140,9 @@ void identifyHidden(int * ARRAY){
 
 
 int main(int argc, char * argv[]){
-    outputFilePtr = fopen("output.txt", "w");
+    outputFilePtr = fopen("output_Problem1_Question1.txt", "w");
     if(outputFilePtr == NULL){
-        perror("Error in creating the output file. Please be aware that your data may not be written to the file as you expected\n");
+        perror("Error in creating the output_Problem1_Question1 file. Please be aware that your data may not be written to the file as you expected\n");
     }
     double time_spent = 0.0;
     clock_t begin = clock();
