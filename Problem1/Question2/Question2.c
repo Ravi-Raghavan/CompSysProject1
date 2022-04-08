@@ -322,7 +322,7 @@ void verifyAnswers(){
     avg = ((double) sum) / ((double) count);
     printf("MAXIMUM: %d\n", max);
     printf("AVERAGE: %f\n", avg);
-    printf("SUM: %d\n", sum);
+    //printf("SUM: %d\n", sum);
 
 }
 
