@@ -145,7 +145,6 @@ int main(int argc, char * argv[]){
     IDENTIFY_HIDDEN = atoi(argv[3]);
 
     ARRAY = malloc((L + H) * sizeof(int));
-    pid_t pid = fork();
     generateTestFile();
     populateArray();
 
