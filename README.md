@@ -54,3 +54,5 @@ So, when you run the program, you do not need to actually generate the numbers.t
 # Problem 2
 How to execute this program: 
 No Arguments Needed. Simply execute as normal!
+
+Some additional information is that I generated process trees in the main process just to analyze how the process trees were working so that I could answer the accompanying questions for this Problem. I have commented them out just to make the output on the terminal less cluttered but feel free to uncomment them to take a look at the process trees. 
