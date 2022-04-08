@@ -2,7 +2,7 @@
 This is Group 9's Submission of Project 1 with all of the C Programs associated with Problem 1 and 2 of this Project.
 
 # Problem 1 Information 
-Note: For Question 1 since we are just using 1 process, I made the output be written to an outputFile called output_Problem1_Question1.txt. For the rest of the programs, since we were using multiple processes and we aren't given any information into how the OS Schedules I/O Operations for child processes, I had the output be displayed on the console(i.e. the terminal). I figured that having multiple child processes writing to the same file could potentially prove to be an issue as the order of output could be scrambled in the file itself. 
+Note: For Question 1 since we are just using 1 process, I made the output be written to an outputFile called output_Problem1_Question1.txt. For the rest of the programs, since we were using multiple processes, I made the output written to both a output File and the terminal. The reason I did this is so that I could debug things more easily(i.e. more debugging was needed for program that generated more processes).  
 # Question 1 of Problem 1
 How to execute this program: 
 Required Inputs: 
